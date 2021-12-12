@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 // адаптер превращает данные в ячейку на экране с ее версткой
 
@@ -22,11 +23,11 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // займемся позже
-        // holder.avatarImageView.setImageBitmap(userList[position].avatarUrl)
-        holder.avatarImageView.setImageResource(R.mipmap.ic_launcher)
-        holder.userNameTextView.setText(userList[position].userName)
-        holder.groupNameTextView.setText(userList[position].groupName)
+        Glide.with(holder.avatarImageView)
+            .load(userList[position].avatarUrl)
+            .into(holder.avatarImageView)
+        holder.userNameTextView.text = userList[position].userName
+        holder.groupNameTextView.text = userList[position].groupName
     }
 
     override fun getItemCount(): Int {
