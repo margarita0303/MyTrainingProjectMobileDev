@@ -9,7 +9,7 @@ interface Api {
     // библиотека retrofit на этапе компиляции обнаружит файл с аннотацией
     // и сгенерирует реализацию метода
 
-    @GET("users")
+    @GET("users?per_page=10")
     suspend fun getUsers(): GetUsersResponse
 }
 
