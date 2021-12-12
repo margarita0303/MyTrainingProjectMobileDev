@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+// адаптер превращает данные в ячейку на экране с ее версткой
+
 class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
 

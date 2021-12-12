@@ -3,73 +3,73 @@ package com.margaritalashina.mytrainingprojectmobiledev
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.View
+import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.moshi.Moshi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.Dispatcher
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val recyclerView = findViewById<RecyclerView>(R.id.usersRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        val adapter = UserAdapter()
-        recyclerView.adapter = adapter
-        adapter.userList = loadUsers()
-        adapter.notifyDataSetChanged()
+        val adapter = setupRecyclerView()
+
+        // добавляем индикатор загрузки до загрузки пользователей
+        findViewById<View>(R.id.usersRecyclerView).isVisible = false
+        findViewById<View>(R.id.progressBar).isVisible = true
+
+        // для того, чтобы вызывать suspend функции, нужно создать корутину
+
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                adapter.userList = loadUsers()
+                adapter.notifyDataSetChanged()
+                // обратно убираем индикатор загрузки и отображаем пользователей
+                findViewById<View>(R.id.usersRecyclerView).isVisible = true
+                findViewById<View>(R.id.progressBar).isVisible = false
+            }
+        }
     }
 
-    private fun loadUsers() : List<User> {
-        return listOf(
-            User(
-                avatarUrl = "",
-                userName = "UserName 1",
-                groupName = "A"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "UserName 2",
-                groupName = "A"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "UserName 3",
-                groupName = "C"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "UserName 4",
-                groupName = "A"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "UserName 5",
-                groupName = "B"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "UserName 6",
-                groupName = "A"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "UserName 7",
-                groupName = "A"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "UserName 8",
-                groupName = "C"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "UserName 9",
-                groupName = "A"
-            ),
-            User(
-                avatarUrl = "",
-                userName = "UserName 10",
-                groupName = "B"
-            ),
-        )
+    private fun setupRecyclerView() : UserAdapter {
+        val recyclerView = findViewById<RecyclerView>(R.id.usersRecyclerView)
+        val adapter = UserAdapter()
+        recyclerView.adapter = adapter
+        return adapter
+    }
+
+    private suspend fun loadUsers() : List<User> {
+        return withContext(Dispatchers.IO) {
+            Thread.sleep(2000)
+            provideApi().getUsers().data
+        }
+    }
+
+    private fun provideApi(): Api {
+        return Retrofit.Builder()
+            .client(provideOkHttpClient())
+            .baseUrl("https://reqres.in/api/")
+            .addConverterFactory(MoshiConverterFactory.create(provideMoshi()))
+            .build()
+            .create(Api::class.java)
+    }
+
+    private fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder().build()
+    }
+
+    private fun provideMoshi(): Moshi {
+        return Moshi.Builder().build()
     }
 }
