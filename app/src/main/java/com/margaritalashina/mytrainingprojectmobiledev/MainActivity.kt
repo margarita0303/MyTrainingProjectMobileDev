@@ -2,42 +2,60 @@ package com.margaritalashina.mytrainingprojectmobiledev
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.View
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.moshi.Moshi
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.margaritalashina.mytrainingprojectmobiledev.databinding.ActivityMainBinding
+import kotlinx.coroutines.flow.collect
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
+    // статичная переменная
+    companion object {
+        val LOG_TAG = "MyAwesomeLogTag"
+    }
+
+    // источник данных для activity - view модель
+    private val viewModel: MainViewModel by viewModels()
+
+    private val viewBinding by viewBinding(ActivityMainBinding::bind)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val adapter = setupRecyclerView()
-
-        // добавляем индикатор загрузки до загрузки пользователей
-        findViewById<View>(R.id.usersRecyclerView).isVisible = false
-        findViewById<View>(R.id.progressBar).isVisible = true
+        Log.d(LOG_TAG, "onCreate()")
+        setupRecyclerView()
 
         // для того, чтобы вызывать suspend функции, нужно создать корутину
-
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                adapter.userList = loadUsers()
-                adapter.notifyDataSetChanged()
-                // обратно убираем индикатор загрузки и отображаем пользователей
-                findViewById<View>(R.id.usersRecyclerView).isVisible = true
-                findViewById<View>(R.id.progressBar).isVisible = false
+                viewModel.viewState.collect { viewState ->
+                    Log.d(LOG_TAG, "$viewState")
+                    renderViewState(viewState)
+                }
+            }
+        }
+    }
+
+    // логика переключения состояний
+    private fun renderViewState(viewState: MainViewModel.ViewState) {
+        when (viewState) {
+            is MainViewModel.ViewState.Loading -> {
+                viewBinding.usersRecyclerView.isVisible = false
+                viewBinding.progressBar.isVisible = true
+            }
+            is MainViewModel.ViewState.Data -> {
+                viewBinding.usersRecyclerView.isVisible = true
+                (viewBinding.usersRecyclerView.adapter as UserAdapter).apply {
+                    userList = viewState.userList
+                    notifyDataSetChanged()
+                }
+                viewBinding.progressBar.isVisible = false
             }
         }
     }
@@ -47,29 +65,5 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val adapter = UserAdapter()
         recyclerView.adapter = adapter
         return adapter
-    }
-
-    private suspend fun loadUsers() : List<User> {
-        return withContext(Dispatchers.IO) {
-            Thread.sleep(2000)
-            provideApi().getUsers().data
-        }
-    }
-
-    private fun provideApi(): Api {
-        return Retrofit.Builder()
-            .client(provideOkHttpClient())
-            .baseUrl("https://reqres.in/api/")
-            .addConverterFactory(MoshiConverterFactory.create(provideMoshi()))
-            .build()
-            .create(Api::class.java)
-    }
-
-    private fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder().build()
-    }
-
-    private fun provideMoshi(): Moshi {
-        return Moshi.Builder().build()
     }
 }
