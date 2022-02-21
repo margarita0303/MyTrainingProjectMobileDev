@@ -20,6 +20,7 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
 
     private val viewBinding by viewBinding(FragmentOnboardingBinding::bind)
     private var player: ExoPlayer? = null
+    private var isVolume: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,7 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
             repeatMode = Player.REPEAT_MODE_ALL
             prepare()
         }
+        isVolume = savedInstanceState?.getBoolean("isVolume") ?: false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +44,30 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
         }
 
         viewBinding.signUpButton.setOnClickListener {
-//         // TODO
+           // TODO
+        }
+
+        changeVolume(isVolume)
+        viewBinding.volumeControlButton.setOnClickListener {
+            changeVolume(!isVolume)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putBoolean("isVolume", isVolume)
+    }
+
+    private fun changeVolume(setOn: Boolean) {
+        if (setOn) {
+            player?.volume = 1F
+            isVolume = true
+            viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_up_white_24dp)
+        } else {
+            player?.volume = 0F
+            isVolume = false
+            viewBinding.volumeControlButton.setImageResource(R.drawable.ic_volume_off_white_24dp)
         }
     }
 
