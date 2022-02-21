@@ -3,7 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_android_white_24dp.xml" value="0.2405" />
+        <entry key="app/src/main/res/drawable/ic_volume_off_white_24dp.xml" value="0.215" />
+        <entry key="app/src/main/res/drawable/ic_volume_up_white_24dp.xml" value="0.215" />
+        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.6099099099099099" />
+        <entry key="app/src/main/res/layout-land/item_user.xml" value="0.6099099099099099" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_user_list.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_onboarding.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_user_list.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_userr.xml" value="0.353125" />
       </map>
