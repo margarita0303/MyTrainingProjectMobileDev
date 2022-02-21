@@ -1,9 +1,10 @@
-package com.margaritalashina.mytrainingprojectmobiledev
+package com.margaritalashina.mytrainingprojectmobiledev.ui.confirmation
 
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
+import com.margaritalashina.mytrainingprojectmobiledev.R
 import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentEmailConfirmationBinding
-import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentSignUpBinding
 
 class EmailConfirmationFragment : BaseFragment(R.layout.fragment_email_confirmation) {
 

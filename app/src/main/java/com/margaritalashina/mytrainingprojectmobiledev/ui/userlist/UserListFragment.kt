@@ -1,4 +1,4 @@
-package com.margaritalashina.mytrainingprojectmobiledev
+package com.margaritalashina.mytrainingprojectmobiledev.ui.userlist
 
 import android.os.Bundle
 import android.view.View
@@ -8,7 +8,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.margaritalashina.mytrainingprojectmobiledev.UserListViewModel.ViewState
+import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
+import com.margaritalashina.mytrainingprojectmobiledev.R
 import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentUserListBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

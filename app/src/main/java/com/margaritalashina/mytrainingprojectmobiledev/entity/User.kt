@@ -1,4 +1,4 @@
-package com.margaritalashina.mytrainingprojectmobiledev
+package com.margaritalashina.mytrainingprojectmobiledev.entity
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

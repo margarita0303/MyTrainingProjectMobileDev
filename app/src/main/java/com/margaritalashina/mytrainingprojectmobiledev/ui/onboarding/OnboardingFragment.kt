@@ -1,9 +1,7 @@
-package com.margaritalashina.mytrainingprojectmobiledev
+package com.margaritalashina.mytrainingprojectmobiledev.ui.onboarding
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -14,6 +12,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
+import com.margaritalashina.mytrainingprojectmobiledev.R
+import com.margaritalashina.mytrainingprojectmobiledev.onboardingTextAdapterDelegate
 
 class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
 

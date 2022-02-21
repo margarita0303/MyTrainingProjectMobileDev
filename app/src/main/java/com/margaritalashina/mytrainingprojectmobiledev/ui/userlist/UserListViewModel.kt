@@ -1,7 +1,10 @@
-package com.margaritalashina.mytrainingprojectmobiledev
+package com.margaritalashina.mytrainingprojectmobiledev.ui.userlist
 
-import android.net.wifi.WifiManager
 import androidx.lifecycle.viewModelScope
+import com.margaritalashina.mytrainingprojectmobiledev.Api
+import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseViewModel
+import com.margaritalashina.mytrainingprojectmobiledev.BuildConfig
+import com.margaritalashina.mytrainingprojectmobiledev.entity.User
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

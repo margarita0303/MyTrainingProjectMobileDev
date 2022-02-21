@@ -1,4 +1,4 @@
-package com.margaritalashina.mytrainingprojectmobiledev
+package com.margaritalashina.mytrainingprojectmobiledev.ui.base
 
 import androidx.lifecycle.ViewModel
 

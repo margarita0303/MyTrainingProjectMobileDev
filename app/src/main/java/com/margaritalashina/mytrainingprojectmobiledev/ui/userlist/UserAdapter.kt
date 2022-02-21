@@ -1,6 +1,5 @@
-package com.margaritalashina.mytrainingprojectmobiledev
+package com.margaritalashina.mytrainingprojectmobiledev.ui.userlist
 
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.margaritalashina.mytrainingprojectmobiledev.R
+import com.margaritalashina.mytrainingprojectmobiledev.entity.User
 
 // адаптер превращает данные в ячейку на экране с ее версткой
 
