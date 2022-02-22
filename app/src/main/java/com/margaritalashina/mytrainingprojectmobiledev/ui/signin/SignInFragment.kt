@@ -17,7 +17,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.signInButton.setOnClickListener {
+        viewBinding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
 
