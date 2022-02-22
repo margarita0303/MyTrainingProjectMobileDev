@@ -22,5 +22,4 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
             findNavController().popBackStack()
         }
     }
-
 }
