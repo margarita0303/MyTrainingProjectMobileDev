@@ -1,6 +1,7 @@
 package com.margaritalashina.mytrainingprojectmobiledev
 
 import android.app.Application
+import com.margaritalashina.mytrainingprojectmobiledev.repository.AuthRepository
 import timber.log.Timber
 
 // экземпляр этого класса будет создавать системой при запуске приложения
