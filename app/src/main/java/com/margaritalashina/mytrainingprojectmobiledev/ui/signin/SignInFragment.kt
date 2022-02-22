@@ -1,5 +1,6 @@
 package com.margaritalashina.mytrainingprojectmobiledev.ui.signin
 
+import android.app.AlertDialog
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
@@ -18,7 +19,21 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.backButton.setOnClickListener {
-            findNavController().popBackStack()
+            val email = viewBinding.emailEditText.text?.toString()
+            val password = viewBinding.passwordEditText.text?.toString()
+            if (email.isNullOrBlank() && password.isNullOrBlank()) {
+                findNavController().popBackStack()
+                return@setOnClickListener
+            }
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.sign_in_back_alert_dialog_text)
+                .setNegativeButton(R.string.sign_in_back_alert_dialog_cancel_button_text) {dialog, _ ->
+                    dialog?.dismiss()
+                }
+                .setPositiveButton(R.string.sign_in_back_alert_dialog_ok_button_text) { _, _ ->
+                    findNavController().popBackStack()
+                }
+                .show()
         }
         viewBinding.signInButton.setOnClickListener {
             viewModel.signIn(
