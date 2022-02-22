@@ -6,15 +6,24 @@
         <entry key="app/src/main/res/drawable/bg_onboarding_dot_indicator.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/bg_onboarding_dot_normal.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/ic_android_white_24dp.xml" value="0.2405" />
+        <entry key="app/src/main/res/drawable/ic_bookmarks_white_24dp.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/ic_home_white_24dp.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/ic_likes_white_24dp.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/ic_profile_white_24dp.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/ic_users_white_24dp.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/ic_volume_off_white_24dp.xml" value="0.215" />
         <entry key="app/src/main/res/drawable/ic_volume_up_white_24dp.xml" value="0.215" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.6099099099099099" />
         <entry key="app/src/main/res/layout-land/item_user.xml" value="0.6099099099099099" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_user_list.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_bookmarks.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_email_confirmation.xml" value="0.35260416666666666" />
-        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_likes.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_onboarding.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_sign_int.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.1" />
@@ -22,6 +31,7 @@
         <entry key="app/src/main/res/layout/item_onboarding_text.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_userr.xml" value="0.353125" />
+        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25" />
       </map>
     </option>
   </component>
