@@ -11,4 +11,7 @@
     <string name="bottom_navigation_title_likes">Лайки</string>
     <string name="bottom_navigation_title_bookmarks">Закладки</string>
     <string name="bottom_navigation_title_profile">Профиль</string>
+
+    <string name="sign_in_sign_in_button_text">Войти</string>
+    <string name="sign_up_sign_up_button_text">Зарегистрироваться</string>
 </resources>
