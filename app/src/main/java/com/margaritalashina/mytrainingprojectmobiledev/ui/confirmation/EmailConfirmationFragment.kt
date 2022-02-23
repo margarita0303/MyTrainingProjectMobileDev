@@ -1,6 +1,9 @@
 package com.margaritalashina.mytrainingprojectmobiledev.ui.confirmation
 
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
 import com.margaritalashina.mytrainingprojectmobiledev.R
@@ -12,4 +15,10 @@ class EmailConfirmationFragment : BaseFragment(R.layout.fragment_email_confirmat
 
     private val viewModel: EmailConfirmationViewModel by viewModels()
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewBinding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
 }
