@@ -10,6 +10,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.core.view.isVisible
 import java.lang.Math.min
+import com.margaritalashina.mytrainingprojectmobiledev.R
+import kotlin.properties.Delegates
 
 // хотим сделать свою реализацию view
 // наследуемся от имеющейся реализации view
@@ -28,6 +30,12 @@ class VerificationCodeEditText @JvmOverloads constructor(
 
     private val viewBinding =
         ViewVerificationCodeEditTextBinding.inflate(LayoutInflater.from(context), this)
+
+    // одна из реализаций
+    // listener
+    private var numberOfSlots: Int by Delegates.observable(0) { _, _, newValue ->
+        // TODO: Handle
+    }
 
     private val slotViews: List<VerificationCodeSlotView> =
         listOf(
@@ -80,6 +88,20 @@ class VerificationCodeEditText @JvmOverloads constructor(
         }
         slotValues.fillWith(viewBinding.realVerificationCodeEditText.text)
         slotViews.render(slotValues)
+
+
+         context
+             .theme
+             .obtainStyledAttributes(
+                 attrs,
+                 R.styleable.VerificationCodeEditText,
+                 defStyleAttr,
+                 defStyleRes
+             )
+             .apply {
+                 numberOfSlots = getInt(R.styleable.VerificationCodeEditText_vcet_numberOfSlots, 6)
+             }
+
     }
 
     fun getCode(): String {
