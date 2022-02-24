@@ -26,6 +26,7 @@ import androidx.core.text.inSpans
 import com.margaritalashina.mytrainingprojectmobiledev.util.getSpannedString
 import android.content.Intent
 import android.net.Uri
+import dev.chrisbanes.insetter.applyInsetter
 
 class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
 
@@ -46,6 +47,12 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding.backButton.applyInsetter {
+            type(statusBars = true) { margin() }
+        }
+        viewBinding.signUpButton.applyInsetter {
+            type(navigationBars = true) { margin() }
+        }
         subscribeToEvents()
         viewBinding.backButton.setOnClickListener {
             onBackButtonPressed()
