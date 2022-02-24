@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Widget.OurAwesomeApp.Button" parent="Widget.MaterialComponents.Button">
+    <style name="Widget.OurAwesomeApp.Button.Primary" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/brand_orange</item>
+    </style>
+
+    <style name="Widget.OurAwesomeApp.Button.Secondary" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/brand_green</item>
     </style>
 
     <style name="Widget.OurAwesomeApp.EditText" parent="Widget.AppCompat.EditText">

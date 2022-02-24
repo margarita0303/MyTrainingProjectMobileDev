@@ -11,6 +11,7 @@ import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.activity.OnBackPressedCallback
+import dev.chrisbanes.insetter.applyInsetter
 
 class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {
 

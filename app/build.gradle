@@ -34,6 +34,12 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "lashina-margarita-${variant.versionName}-${variant.buildType.name}.apk"
+        }
+    }
 }
 
 dependencies {
@@ -83,6 +89,6 @@ dependencies {
     implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:$adapterDelegatesVersion"
     // System insets handling.
     // https://chrisbanes.github.io/insetter
-    // https://github.com/chrisbanes/insetter 
+    // https://github.com/chrisbanes/insetter
     implementation "dev.chrisbanes.insetter:insetter:0.6.0"
 }
