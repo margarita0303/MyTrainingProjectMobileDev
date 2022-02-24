@@ -40,6 +40,7 @@ android {
             outputFileName = "lashina-margarita-${variant.versionName}-${variant.buildType.name}.apk"
         }
     }
+
 }
 
 dependencies {
@@ -91,4 +92,7 @@ dependencies {
     // https://chrisbanes.github.io/insetter
     // https://github.com/chrisbanes/insetter
     implementation "dev.chrisbanes.insetter:insetter:0.6.0"
+//    // https://github.com/haroldadmin/NetworkResponseAdapter.
+//    implementation "com.github.haroldadmin:NetworkResponseAdapter:4.2.2"
+
 }
