@@ -5,10 +5,6 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
-import com.margaritalashina.mytrainingprojectmobiledev.R
-import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentOnboardingBinding
-import com.margaritalashina.mytrainingprojectmobiledev.onboardingTextAdapterDelegate
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -16,13 +12,20 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import com.margaritalashina.mytrainingprojectmobiledev.R
+import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentOnboardingBinding
+import com.margaritalashina.mytrainingprojectmobiledev.onboardingTextAdapterDelegate
+import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
 import dev.chrisbanes.insetter.applyInsetter
+import java.util.*
 
 class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
 
     private val viewBinding by viewBinding(FragmentOnboardingBinding::bind)
     private var player: ExoPlayer? = null
     private var isVolume: Boolean = false
+
+    private var timer: Timer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,12 +58,31 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
         viewBinding.volumeControlButton.setOnClickListener {
             changeVolume(!isVolume)
         }
+
+        startTimer()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
         outState.putBoolean("isVolume", isVolume)
+    }
+
+    private fun startTimer() {
+        timer = Timer().apply {
+            scheduleAtFixedRate(scrollTask(), 5000, 5000)
+        }
+    }
+
+    private fun scrollTask() = object : TimerTask() {
+        override fun run() {
+            activity?.runOnUiThread {
+                viewBinding.viewPager.apply {
+                    val numberOfItems = adapter?.itemCount ?: 1
+                    setCurrentItem((currentItem + 1) % numberOfItems, true)
+                }
+            }
+        }
     }
 
     private fun changeVolume(setOn: Boolean) {
