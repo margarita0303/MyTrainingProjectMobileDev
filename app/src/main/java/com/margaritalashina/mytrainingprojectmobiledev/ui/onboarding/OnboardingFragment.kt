@@ -17,7 +17,6 @@ import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentOnboa
 import com.margaritalashina.mytrainingprojectmobiledev.onboardingTextAdapterDelegate
 import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
 import dev.chrisbanes.insetter.applyInsetter
-import java.util.*
 
 class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
 
@@ -25,7 +24,7 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
     private var player: ExoPlayer? = null
     private var isVolume: Boolean = false
 
-    private var timer: Timer? = null
+//    private var timer: Timer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +58,7 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
             changeVolume(!isVolume)
         }
 
-        startTimer()
+//        startTimer()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -68,22 +67,22 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
         outState.putBoolean("isVolume", isVolume)
     }
 
-    private fun startTimer() {
-        timer = Timer().apply {
-            scheduleAtFixedRate(scrollTask(), 5000, 5000)
-        }
-    }
+//    private fun startTimer() {
+//        timer = Timer().apply {
+//            scheduleAtFixedRate(scrollTask(), 5000, 5000)
+//        }
+//    }
 
-    private fun scrollTask() = object : TimerTask() {
-        override fun run() {
-            activity?.runOnUiThread {
-                viewBinding.viewPager.apply {
-                    val numberOfItems = adapter?.itemCount ?: 1
-                    setCurrentItem((currentItem + 1) % numberOfItems, true)
-                }
-            }
-        }
-    }
+//    private fun scrollTask() = object : TimerTask() {
+//        override fun run() {
+//            activity?.runOnUiThread {
+//                viewBinding.viewPager.apply {
+//                    val numberOfItems = adapter?.itemCount ?: 1
+//                    setCurrentItem((currentItem + 1) % numberOfItems, true)
+//                }
+//            }
+//        }
+//    }
 
     private fun changeVolume(setOn: Boolean) {
         if (setOn) {
