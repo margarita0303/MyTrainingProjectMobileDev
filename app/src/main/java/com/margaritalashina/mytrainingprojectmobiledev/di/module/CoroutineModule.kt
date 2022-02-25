@@ -1,6 +1,6 @@
 package com.margaritalashina.mytrainingprojectmobiledev.di.module
 
-import com.blelocking.di.*
+import com.margaritalashina.mytrainingprojectmobiledev.di.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

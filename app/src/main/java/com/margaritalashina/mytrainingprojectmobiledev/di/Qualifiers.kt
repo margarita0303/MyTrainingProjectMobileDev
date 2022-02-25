@@ -1,5 +1,4 @@
-package com.blelocking.di
-
+package com.margaritalashina.mytrainingprojectmobiledev.di
 import javax.inject.Qualifier
 
 @Retention(AnnotationRetention.RUNTIME)

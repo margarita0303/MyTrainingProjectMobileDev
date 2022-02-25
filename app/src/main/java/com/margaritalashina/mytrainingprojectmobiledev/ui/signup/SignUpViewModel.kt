@@ -1,15 +1,17 @@
 package com.margaritalashina.mytrainingprojectmobiledev.ui.signup
 
 import androidx.lifecycle.viewModelScope
+import com.margaritalashina.mytrainingprojectmobiledev.repository.AuthRepositoryOld
 import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseViewModel
-import com.margaritalashina.mytrainingprojectmobiledev.repository.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.launch
-import java.lang.Exception
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SignUpViewModel : BaseViewModel() {
+@HiltViewModel
+class SignUpViewModel @Inject constructor(): BaseViewModel() {
 
     private val _eventChannel = Channel<Event>(Channel.BUFFERED)
 
@@ -26,7 +28,7 @@ class SignUpViewModel : BaseViewModel() {
     ) {
         viewModelScope.launch {
             try {
-                AuthRepository.signUp(
+                AuthRepositoryOld.signUp(
                     firstname,
                     lastname,
                     nickname,

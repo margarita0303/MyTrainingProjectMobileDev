@@ -1,11 +1,16 @@
 package com.margaritalashina.mytrainingprojectmobiledev.ui.userlist
 
 import androidx.lifecycle.viewModelScope
-import com.margaritalashina.mytrainingprojectmobiledev.Api
-import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseViewModel
+import com.haroldadmin.cnradapter.invoke
 import com.margaritalashina.mytrainingprojectmobiledev.BuildConfig
+
+import com.margaritalashina.mytrainingprojectmobiledev.data.network.Api
+import com.margaritalashina.mytrainingprojectmobiledev.data.network.MockApi
 import com.margaritalashina.mytrainingprojectmobiledev.entity.User
+import com.margaritalashina.mytrainingprojectmobiledev.interactor.UserListInteractor
+import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseViewModel
 import com.squareup.moshi.Moshi
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +22,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
+import javax.inject.Inject
 
-class UserListViewModel : BaseViewModel() {
+@HiltViewModel
+class UserListViewModel @Inject constructor(
+    private val userListInteractor: UserListInteractor
+) : BaseViewModel() {
 
     sealed class ViewState {
         object Loading : ViewState()
@@ -42,22 +51,27 @@ class UserListViewModel : BaseViewModel() {
         return withContext(Dispatchers.IO) {
             Timber.d("loadUsers()")
             Thread.sleep(3000)
-            provideApi().getUsers().data
+            provideApi().getUsers().invoke()?.toList() ?: emptyList()
         }
     }
 
-    private fun provideApi(): Api {
-        return Retrofit.Builder()
-            .client(provideOkHttpClient())
-            .baseUrl("https://reqres.in/api/")
-            .addConverterFactory(MoshiConverterFactory.create(provideMoshi()))
-            .build()
-            .create(Api::class.java)
-    }
+    private fun provideApi(): Api =
+        if (BuildConfig.USE_MOCK_BACKEND_API) {
+            MockApi()
+        } else {
+            Retrofit.Builder()
+                .client(provideOkHttpClient())
+                .baseUrl("https://reqres.in/api/")
+                .addConverterFactory(MoshiConverterFactory.create(provideMoshi()))
+                .build()
+                .create(Api::class.java)
+        }
 
     private fun provideOkHttpClient(): OkHttpClient =
         OkHttpClient
             .Builder()
+//            .addInterceptor(AuthorizationInterceptor(AuthRepository(api, ...)))
+//            .authenticator(OurAwesomeAppAuthenticator(authRepository))
             .apply {
                 if (BuildConfig.DEBUG) {
                     addNetworkInterceptor (
@@ -73,3 +87,4 @@ class UserListViewModel : BaseViewModel() {
         return Moshi.Builder().build()
     }
 }
+

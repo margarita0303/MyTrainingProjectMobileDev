@@ -29,7 +29,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
             .circleCrop()
             .into(holder.avatarImageView)
         holder.userNameTextView.text = userList[position].userName
-        holder.groupNameTextView.text = userList[position].groupName
+        holder.groupNameTextView.text = with(userList[position]) { "$firstName $lastName" }
     }
 
     override fun getItemCount(): Int {

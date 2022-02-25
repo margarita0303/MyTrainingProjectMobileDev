@@ -5,9 +5,10 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class User(
-
-    // поле avatar должно парситься в поле avatarUrl
-    @Json(name = "avatar") val avatarUrl: String, // For example: "https://mydomain.com/user_1_avatar.jpg"
-    @Json(name = "first_name") val userName: String,
-    @Json(name = "email") val groupName: String
+    @Json(name = "id") val id: Long,
+    @Json(name = "user_name") val userName: String,
+    @Json(name = "first_name") val firstName: String,
+    @Json(name = "last_name") val lastName: String,
+    @Json(name = "picture") val avatarUrl: String? = null,
+    @Json(name = "about_me") val about: String? = null
 )

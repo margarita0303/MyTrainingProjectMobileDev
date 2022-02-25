@@ -8,13 +8,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
 import com.margaritalashina.mytrainingprojectmobiledev.R
 import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentUserListBinding
+import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class UserListFragment: BaseFragment(R.layout.fragment_user_list) {
+@AndroidEntryPoint
+class UserListFragment : BaseFragment(R.layout.fragment_user_list) {
 
     private val viewModel: UserListViewModel by viewModels()
     private val viewBinding by viewBinding(FragmentUserListBinding::bind)

@@ -1,18 +1,20 @@
 package com.margaritalashina.mytrainingprojectmobiledev.ui.signin
 
 import android.app.AlertDialog
-import androidx.fragment.app.viewModels
-import by.kirich1409.viewbindingdelegate.viewBinding
-import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
-import com.margaritalashina.mytrainingprojectmobiledev.R
-import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentSignInBinding
 import android.os.Bundle
 import android.view.View
-import androidx.core.widget.doAfterTextChanged
-import androidx.navigation.fragment.findNavController
 import androidx.activity.OnBackPressedCallback
+import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.margaritalashina.mytrainingprojectmobiledev.R
+import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentSignInBinding
+import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 
+@AndroidEntryPoint
 class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {
 
     private val viewBinding by viewBinding(FragmentSignInBinding::bind)

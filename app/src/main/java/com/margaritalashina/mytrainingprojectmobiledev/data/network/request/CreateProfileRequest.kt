@@ -9,5 +9,6 @@ data class CreateProfileRequest(
     @Json(name = "first_name") val firstname: String,
     @Json(name = "last_name") val lastname: String,
     @Json(name = "email") val email: String,
-    @Json(name = "password") val password: String
+    @Json(name = "password") val password: String,
+    val password1: String
 )

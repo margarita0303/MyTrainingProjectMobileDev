@@ -1,33 +1,35 @@
 package com.margaritalashina.mytrainingprojectmobiledev.ui.signup
 
-import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import by.kirich1409.viewbindingdelegate.viewBinding
-import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
-import com.margaritalashina.mytrainingprojectmobiledev.R
-import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentSignUpBinding
 import android.app.AlertDialog
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 import android.text.Editable
+import android.text.TextPaint
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.View
+import android.widget.CheckBox
 import androidx.activity.OnBackPressedCallback
+import androidx.core.text.buildSpannedString
+import androidx.core.text.inSpans
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.flow.collect
-import android.text.style.ClickableSpan
-import android.widget.CheckBox
-import android.text.method.LinkMovementMethod
-import android.text.TextPaint
-import androidx.core.text.buildSpannedString
-import androidx.core.text.inSpans
+import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.margaritalashina.mytrainingprojectmobiledev.R
+import com.margaritalashina.mytrainingprojectmobiledev.databinding.FragmentSignUpBinding
+import com.margaritalashina.mytrainingprojectmobiledev.ui.base.BaseFragment
 import com.margaritalashina.mytrainingprojectmobiledev.util.getSpannedString
-import android.content.Intent
-import android.net.Uri
+import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
 
     private val viewModel: SignUpViewModel by viewModels()
