@@ -3,6 +3,8 @@ package com.margaritalashina.mytrainingprojectmobiledev.ui.signin
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
 import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
@@ -33,6 +35,9 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        animateElement(viewBinding.mknLogoImageView)
+
         viewBinding.backButton.applyInsetter {
             type(statusBars = true) { margin() }
         }
@@ -91,4 +96,21 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in) {
     private fun decideSignInButtonEnabledState(email: String?, password: String?) {
         viewBinding.signInButton.isEnabled = !(email.isNullOrBlank() || password.isNullOrBlank())
     }
+
+    private fun animateElement(elem: View){
+        val rotate = RotateAnimation(
+            0F,
+            180F,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
+        )
+
+        rotate.duration = 3000
+        rotate.repeatCount = Animation.INFINITE
+        elem.startAnimation(rotate)
+    }
+
+
 }
